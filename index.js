@@ -3,7 +3,10 @@ const app = express();
 const sgMail = require("@sendgrid/mail");
 const host = process.env.HOST || "0.0.0.0";
 const port = process.env.PORT || 8080;
+const cors = require("cors");
 
+app.use(cors());
+app.options("*", cors());
 app.use(express.json());
 
 app.post("/api/email", checkBody(), async (req, res, next) => {
